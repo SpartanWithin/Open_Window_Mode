@@ -1,0 +1,137 @@
+# INPUTS BOOLEAN
+
+input_boolean:
+
+
+  # switch to mark the windows as opened when weather is good
+  open_window_mode:
+    name: Open Window Mode
+    initial: off
+    icon: mdi:window-open-variant
+
+
+
+# INPUTS DATETIME
+
+input_datetime:
+
+
+  # Open Window Mode activation time
+  open_window_mode_on:
+    name: orario di attivazione di Open Window Mode
+    has_date: true
+    has_time: true
+    icon: mdi:window-open-variant
+
+  # Open Window Mode deactivation time
+  open_window_mode_off:
+    name: orario di disattivazione di Open Window Mode
+    has_date: true
+    has_time: true
+    icon: mdi:window-closed-variant
+
+
+
+# TIMERS
+
+timer:
+
+
+  # Open Window Mode
+  open_window_mode:
+    name: Open Window Mode
+    duration: "01:00:00"
+    icon: mdi:window-open-variant
+
+
+
+# SCRIPTS
+
+script:
+
+
+  # Open Window Mode (de)activation
+    # also useful with Alexa in a routine
+  open_window_mode:
+    alias: "[climate] Open Window Mode (de)activation"
+    description: "(dis)Attivazione di Open Window Mode"
+    variables:
+      message: "" # if defined here, invert 'on' with 'off' and viceversa in the template!
+    sequence:
+      # activate Open Window Mode if inactive or deactivate it when active
+      - service: >
+          {{ "input_boolean.turn_on" if is_state('input_boolean.open_window_mode', 'off') else "input_boolean.turn_off" }}
+        entity_id: input_boolean.open_window_mode
+      # start the timer if inactive or stop it when active
+      - service: >
+          {{ "timer.start" if is_state('input_boolean.open_window_mode', 'on') else "timer.finish" }}
+        entity_id: timer.open_window_mode
+      # set (de)activation time
+      - service: input_datetime.set_datetime
+        data:
+          entity_id: "{{ 'input_datetime.open_window_mode_on' if is_state('input_boolean.open_window_mode', 'on') else 'input_datetime.open_window_mode_off' }}"
+          datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"
+      # turn off heating (HVAC package) or restore thermostats settings (MHM package)
+      - service: >
+          {{ "script.pause_heating_mode" if is_state('input_boolean.open_window_mode', 'on') else "script.reset_thermostats_preset_modes" }}
+      # turn off pause heating script (if active)
+      - service: script.turn_off
+        entity_id: script.pause_heating_mode
+      # notification via text message
+      - service: notify.notify
+        data:
+          title: "CLIMA DOMESTICO"
+          message: >
+            {% set duration = as_timestamp(states('input_datetime.open_window_mode_off')) - as_timestamp(states('input_datetime.open_window_mode_on')) %}
+            {% set hours = (duration/3600)|int %}
+            {% set minutes = (duration/60)|int - hours*60 %}
+            {% set seconds = (duration%60)|int %}
+            {% set duration =
+              (hours ~ " ore, " if hours > 1 else "un'ora" if hours == 1)
+              ~ (", " if minutes != 0 and seconds != 0 else " e " if minutes != 0 and seconds == 0 else "")
+              ~ (minutes ~ " minuti" if minutes > 1 else "un minuto" if minutes == 1 else "")
+              ~ (" e " if seconds != 0 else "")
+              ~ (seconds ~ " secondi" if seconds > 1 else "un secondo" if seconds == 1 else "") %}
+    
+            {{ "Open Window Mode " ~ ("attivato" if is_state('input_boolean.open_window_mode', 'on') else "disattivato") ~ "." }}
+            {{ (("Un timer di durata " ~ state_attr('timer.open_window_mode', 'duration'))
+              if is_state('input_boolean.open_window_mode', 'on') else
+              "Il timer ")
+              ~ "è stato attivato alle "
+              ~ as_timestamp(states('input_datetime.open_window_mode_on'))|timestamp_custom('%H:%M:%S')
+              ~ " e "
+              ~ ("terminerà alle " ~ as_timestamp(state_attr('timer.open_window_mode', 'finishes_at'))|timestamp_custom('%H:%M:%S')
+                if is_state('input_boolean.open_window_mode', 'on') else
+                "disattivato alle " ~ as_timestamp(states('input_datetime.open_window_mode_off')) | timestamp_custom('%H:%M:%S')
+                ~ ", rimanendo attivo per " ~ duration)
+              ~ "." }}
+
+
+  # pause heating mode
+  pause_heating_mode:
+    alias: "[HVAC] Pause Heating Mode"
+    description: "[HVAC] mette in pausa il riscaldamento per un tempo impostato"
+    icon: mdi:thermostat
+    fields:
+      thermostats:
+        description: thermostat(s) to turn off
+        example: "all"                                                 # default
+      time_off:
+        description: time delay to left thermostats off before turning them on again
+        example: "01:00:00"                                            # for 1 hour
+    variables:
+      thermostats: all
+      time_off: "01:00:00"
+    sequence:
+      # saving thermostats actual settings
+      - service: script.save_thermostats_preset_modes
+      # turn heating off
+      - service: script.set_thermostats_preset_modes
+        data:
+          data:
+            thermostats: "{{ states.climate | selectattr('name', 'defined') | selectattr('attributes.preset_mode', 'defined') | list }}"
+            hvac_mode: "off"
+      # wait the selected time
+      - delay: "{{ time_off }}"
+      # turn heating on again with previous settings
+      - service: script.reset_thermostats_preset_modes

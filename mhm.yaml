@@ -1,0 +1,617 @@
+################################
+#              MHM             #
+#    (MANUAL HEATING MODE)     #
+################################
+
+
+
+# INPUTS BOOLEAN
+
+input_boolean:
+
+
+  # switch to turn on manual heating mode panel
+  manual_heating_mode_panel:
+    name: impostazione manuale dei termostati
+    initial: off
+    icon: mdi:thermostat
+
+  # switch to turn on manual heating mode
+  manual_heating_mode:
+    name: imposta i termostati
+    initial: off
+    icon: mdi:thermostat
+
+  # switch to turn on thermostats parameters panel
+  thermostats_previous_setting:
+    name: parametri precedenti dei termostati
+    initial: off
+    icon: mdi:application-cog
+
+
+  # thermostats offsets setting
+
+  # switch to turn on thermostats settings panel
+  climate_settings_panel:
+    name: impostazioni impianto di riscaldamento
+    icon: mdi:application-cog
+    initial: off
+  # switch to turn on thermostats history panel
+  climate_history_panel:
+    name: cronologia del riscaldamento domestico
+    icon: mdi:history
+    initial: off
+
+
+
+# INPUTS SELECT
+
+input_select:
+
+
+  # thermostats
+
+  # thermostats to set
+  thermostats_to_set:
+    name: termostati
+    options:
+      - tutti i termostati
+      - termostato 1
+      - valvola 1
+      - valvola 2
+      - valvola 3
+      - valvola 4
+    icon: mdi:thermostat
+
+
+  # thermostats settings to set
+
+  # thermostats preset mode (away, home)
+  thermostats_preset_mode_to_set:
+    name: preset_modes
+    options:
+      - home
+      - away
+    icon: mdi:home
+  # thermostats HVAC action (off, auto, heat)
+  thermostats_hvac_mode_to_set:
+    name: hvac_actions
+    options:
+      - "off"
+      - auto
+      - heat
+    icon: mdi:hvac
+
+
+  # thermostats offsets setting selector
+
+  # thermostats offsets setting selector
+  thermostats_offsets_setting:
+    name: impostazione degli offset dei termostati
+    icon: mdi:thermometer-lines
+    options:
+      - nessun offset
+      - offset uguali per tutti i termostati
+      - offset differenziati per ciascun termostato
+
+
+
+# INPUTS NUMBER
+
+input_number:
+
+
+  # thermostats settings to set
+
+  # thermostats temperature
+  thermostats_temperature_to_set:
+    name: temperatura
+    min: 5
+    max: 25
+    initial: 20
+    step: 0.1
+    mode: box
+    icon: mdi:home-thermometer-outline
+
+
+  # thermostats temperature to set back
+
+  # T1 thermostat
+  t1_temperature:
+    name: temperatura T1
+    min: 5
+    max: 25
+    initial: 20
+    step: 0.1
+    mode: box
+    icon: mdi:thermometer
+  # V1 thermostat
+  t2_temperature:
+    name: temperatura V1
+    min: 5
+    max: 25
+    initial: 20
+    step: 0.1
+    mode: box
+    icon: mdi:thermometer
+  # V2 thermostat
+  t3_temperature:
+    name: temperatura V2
+    min: 5
+    max: 25
+    initial: 20
+    step: 0.1
+    mode: box
+    icon: mdi:thermometer
+  # V3 thermostat
+  t4_temperature:
+    name: temperatura V3
+    min: 5
+    max: 25
+    initial: 20
+    step: 0.1
+    mode: box
+    icon: mdi:thermometer
+  # V4 thermostat
+  t5_temperature:
+    name: temperatura V4
+    min: 5
+    max: 25
+    initial: 20
+    step: 0.1
+    mode: box
+    icon: mdi:thermometer
+
+
+  # temperature offsets
+
+  # same offset for all thermostats
+  general_temperature_offset:
+    name: offset temperatura generale
+    min: -5
+    max: 5
+    initial: 0
+    step: 0.1
+    mode: box
+    icon: mdi:thermometer-plus
+
+  # different offset per thermostat (from the main thermostat)
+  V1_temperature_offset:
+    name: offset temperatura V1
+    min: -5
+    max: 5
+    initial: 0
+    step: 0.1
+    mode: box
+    icon: mdi:thermometer-plus
+  V1_temperature_offset:
+    name: offset temperatura V2
+    min: -5
+    max: 5
+    initial: 0
+    step: 0.1
+    mode: box
+    icon: mdi:thermometer-plus
+  V3_temperature_offset:
+    name: offset V3
+    min: -5
+    max: 5
+    initial: 0
+    step: 0.1
+    mode: box
+    icon: mdi:thermometer-plus
+  V4_temperature_offset:
+    name: offset V4
+    min: -5
+    max: 5
+    initial: 0
+    step: 0.1
+    mode: box
+    icon: mdi:thermometer-plus
+
+
+
+# INPUTS TEXT
+
+input_text:
+
+
+  # thermostats to set
+  thermostats_to_set:
+    name: termostati da impostare
+
+
+  # thermostats settings (to set back)
+
+  # preset mode to set back
+
+  # T1 thermostat
+  t1_preset_mode:
+    name: modalità T1
+    initial: "home"
+  # V1 thermostat
+  t2_preset_mode:
+    name: modalità V1
+    initial: "home"
+  # V2 thermostat
+  t3_preset_mode:
+    name: modalità V2
+    initial: "home"
+  # V3 thermostat
+  t4_preset_mode:
+    name: modalità V3
+    initial: "home"
+  # V4 thermostat
+  t5_preset_mode:
+    name: modalità V4
+    initial: "home"
+
+  # HVAC action
+
+  # T1 thermostat
+  t1_hvac_action:
+    name: attività T1
+    initial: "off"
+  # V1 thermostat
+  t2_hvac_action:
+    name: attività V1
+    initial: "off"
+  # V2 thermostat
+  t3_hvac_action:
+    name: attività V2
+    initial: "off"
+  # V3 thermostat
+  t4_hvac_action:
+    name: attività V3
+    initial: "off"
+  # V4 thermostat
+  t5_hvac_action:
+    name: attività V4
+    initial: "off"
+
+  # HVAC mode to set back
+
+  # T1 thermostat
+  t1_hvac_mode:
+    name: attività T1
+    initial: "off"
+  # V1 thermostat
+  t2_hvac_mode:
+    name: attività V1
+    initial: "off"
+  # V2 thermostat
+  t3_hvac_mode:
+    name: attività V2
+    initial: "off"
+  # V3 thermostat
+  t4_hvac_mode:
+    name: attività V3
+    initial: "off"
+  # V4 thermostat
+  t5_hvac_mode:
+    name: attività V4
+    initial: "off"
+
+
+
+# GROUPS
+
+group:
+
+
+
+# SENSORS
+
+
+sensor:
+
+  - platform: template
+    sensors:
+
+      # thermostats to set
+      thermostats_to_set:
+        value_template: >
+          {% set thermostats = states.climate |
+            selectattr('name', 'defined') |
+            selectattr('attributes.preset_mode', 'defined') |
+            list %}
+          {% if is_state('input_select.thermostats_to_set', 'tutti i termostati') %}
+            {{ thermostats | map(attribute='entity_id') | list }}
+          {% else %}
+            {% for thermostat in thermostats %}
+              {{ thermostat.entity_id if thermostat.name == states('input_select.thermostats_to_set') }}
+            {% endfor %}
+          {% endif %}
+
+
+
+# SCRIPTS
+
+script:
+
+
+  # thermostats preset modes
+
+  # save thermostat(s) preset modes
+  save_thermostats_preset_modes:
+    alias: "[HVAC] save thermostats preset modes"
+    description: "[HVAC] salva le impostazioni dei termostati"
+    icon: mdi:content-save-cog
+    sequence:
+
+      # preset mode
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.t1_preset_mode
+          value: "{{ state_attr('climate.thermostat_t1', 'preset_mode') }}"
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.t2_preset_mode
+          value: "{{ state_attr('climate.thermostat_v1', 'preset_mode') }}"
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.t3_preset_mode
+          value: "{{ state_attr('climate.thermostat_v1', 'preset_mode') }}"
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.t4_preset_mode
+          value: "{{ state_attr('climate.thermostat_v3', 'preset_mode') }}"
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.t5_preset_mode
+          value: "{{ state_attr('climate.thermostat_v4', 'preset_mode') }}"
+
+      # HVAC action
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.t1_hvac_action
+          value: "{{ state_attr('climate.thermostat_t1', 'hvac_action') }}"
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.t2_hvac_action
+          value: "{{ state_attr('climate.thermostat_v1', 'hvac_action') }}"
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.t3_hvac_action
+          value: "{{ state_attr('climate.thermostat_v1', 'hvac_action') }}"
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.t4_hvac_action
+          value: "{{ state_attr('climate.thermostat_v3', 'hvac_action') }}"
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.t5_hvac_action
+          value: "{{ state_attr('climate.thermostat_v4', 'hvac_action') }}"
+
+      # HVAC mode
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.t1_hvac_mode
+          value: "{{ states('climate.thermostat_t1') }}"
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.t2_hvac_mode
+          value: "{{ states('climate.thermostat_v1') }}"
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.t3_hvac_mode
+          value: "{{ states('climate.thermostat_v1') }}"
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.t4_hvac_mode
+          value: "{{ states('climate.thermostat_v3') }}"
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.t5_hvac_mode
+          value: "{{ states('climate.thermostat_v4') }}"
+
+      # temperature
+      - service: input_number.set_value
+        data:
+          entity_id: input_number.t1_temperature
+          value: "{{ state_attr('climate.thermostat_t1', 'temperature') }}"
+      - service: input_number.set_value
+        data:
+          entity_id: input_number.t2_temperature
+          value: "{{ state_attr('climate.thermostat_v1', 'temperature') }}"
+      - service: input_number.set_value
+        data:
+          entity_id: input_number.t3_temperature
+          value: "{{ state_attr('climate.thermostat_v1', 'temperature') }}"
+      - service: input_number.set_value
+        data:
+          entity_id: input_number.t4_temperature
+          value: "{{ state_attr('climate.thermostat_v3', 'temperature') }}"
+      - service: input_number.set_value
+        data:
+          entity_id: input_number.t5_temperature
+          value: "{{ state_attr('climate.thermostat_v4', 'temperature') }}"
+
+
+  # set thermostat(s) preset modes
+  set_thermostats_preset_modes:
+    alias: "[HVAC] set thermostats preset modes"
+    description: "[HVAC] imposta i termostati alle nuove impostazioni"
+    icon: mdi:application-cog
+    fields:
+      thermostats:
+        description: thermostat(s) to set preset mode, HVAC mode and temperature
+        example: climate.thermostat_livingroom
+      preset_mode:
+        description: preset mode to set, between [home, away]
+        example: "home"
+      hvac_mode:
+        description: HVAC action to set, between [off, auto, heat]
+        example: "heat"
+      temperature:
+        description: temperatures to set, in the range 5 - 20 °C
+        example: "20"
+    variables:
+      thermostats: "{{ states.sensor.thermostats_to_set.state }}"
+      preset_mode: "{{ states('input_select.thermostats_preset_mode_to_set') }}"
+      hvac_mode: "{{ states('input_select.thermostats_hvac_mode_to_set') }}"
+      temperature: "{{ states('input_number.thermostats_temperature_to_set')|float }}"
+    sequence:
+      # setting new values (this order is imperative)
+
+      # preset mode setting
+      - service: climate.set_preset_mode
+        data:
+          entity_id: "{{ thermostats }}"
+          preset_mode: "{{ preset_mode }}"
+
+      # temperature setting
+        # same temperature for all thermostats, with same offset for all thermostats if is set
+      - service: climate.set_temperature
+        data:
+          entity_id: "{{ thermostats }}"
+          temperature: "{{ temperature + (states('input_number.general_temperature_offset') if is_state('input_select.thermostats_offsets_setting', 'offset uguali per tutti i termostati') else 0)|float }}"
+        # different temperature per thermostat if offsets are set
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.thermostat_v1
+          temperature: "{{ (temperature + states('input_number.V1_temperature_offset')|float) if is_state('input_select.thermostats_offsets_setting', 'offset differenziati per ciascun termostato') else 0 }}"
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.thermostat_v1
+          temperature: "{{ (temperature + states('input_number.V1_temperature_offset')|float) if is_state('input_select.thermostats_offsets_setting', 'offset differenziati per ciascun termostato') else 0 }}"
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.thermostat_v3
+          temperature: "{{ (temperature + states('input_number.V3_temperature_offset')|float) if is_state('input_select.thermostats_offsets_setting', 'offset differenziati per ciascun termostato') else 0 }}"
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.thermostat_v4
+          temperature: "{{ (temperature + states('input_number.V4_temperature_offset')|float) if is_state('input_select.thermostats_offsets_setting', 'offset differenziati per ciascun termostato') else 0 }}"
+
+      # HVAC mode setting
+      - service: climate.set_hvac_mode
+        data:
+          entity_id: "{{ thermostats }}"
+          hvac_mode: "{{ hvac_mode }}"
+
+
+  # reset thermostat(s) preset modes
+  reset_thermostats_preset_modes:
+    alias: "[HVAC] reset thermostats preset modes"
+    description: "[HVAC] ripristina le impostazioni precedenti dei termostati"
+    sequence:
+      # resetting old values (this order is imperative)
+
+      # temperature
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.thermostat_t1
+          temperature: "{{ states.input_number.t1_temperature.state }}"
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.thermostat_v1
+          temperature: "{{ states.input_number.t2_temperature.state }}"
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.thermostat_v1
+          hvac_mode: "{{ states.input_text.t3_hvac_mode.state }}"
+          temperature: "{{ states.input_number.t3_temperature.state }}"
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.thermostat_v3
+          temperature: "{{ states.input_number.t4_temperature.state }}"
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.thermostat_v4
+          temperature: "{{ states.input_number.t5_temperature.state }}"
+
+      # HVAC mode
+      - service: climate.set_hvac_mode
+        data:
+          entity_id: climate.thermostat_t1
+          hvac_mode: "{{ states.input_text.t1_hvac_mode.state }}"
+      - service: climate.set_hvac_mode
+        data:
+          entity_id: climate.thermostat_v1
+          hvac_mode: "{{ states.input_text.t2_hvac_mode.state }}"
+      - service: climate.set_hvac_mode
+        data:
+          entity_id: climate.thermostat_v1
+          hvac_mode: "{{ states.input_text.t3_hvac_mode.state }}"
+      - service: climate.set_hvac_mode
+        data:
+          entity_id: climate.thermostat_v3
+          hvac_mode: "{{ states.input_text.t4_hvac_mode.state }}"
+      - service: climate.set_hvac_mode
+        data:
+          entity_id: climate.thermostat_v4
+          hvac_mode: "{{ states.input_text.t5_hvac_mode.state }}"
+
+      # preset mode
+      - service: climate.set_preset_mode
+        data:
+          entity_id: climate.thermostat_t1
+          preset_mode: "{{ states.input_text.t1_preset_mode.state }}"
+      - service: climate.set_preset_mode
+        data:
+          entity_id: climate.thermostat_v1
+          preset_mode: "{{ states.input_text.t2_preset_mode.state }}"
+      - service: climate.set_preset_mode
+        data:
+          entity_id: climate.thermostat_v1
+          preset_mode: "{{ states.input_text.t3_preset_mode.state }}"
+      - service: climate.set_preset_mode
+        data:
+          entity_id: climate.thermostat_v3
+          preset_mode: "{{ states.input_text.t4_preset_mode.state }}"
+      - service: climate.set_preset_mode
+        data:
+          entity_id: climate.thermostat_v4
+          preset_mode: "{{ states.input_text.t5_preset_mode.state }}"
+
+
+
+# AUTOMATIONS
+
+automation:
+
+
+  # set manual heating
+
+  # start manual heating mode
+  - id: "HVAC-manual_heating_mode"
+    alias: "[HVAC] manual heating setting"
+    description: "Impostazione manuale dei termostati"
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_boolean.manual_heating_mode
+    action:
+      - choose:
+          # CASE 1: manual heating setting ON
+          - conditions: "{{ is_state(trigger.entity_id, 'on') }}"
+            sequence:
+              # save thermostat(s) actual settings
+              - service: script.save_thermostats_preset_modes
+              # - service: scene.create
+              #   data:
+              #     scene_id: save_thermostats_preset_modes
+              #     snapshot_entities: "{{ states.sensor.thermostats_to_set.state }}"
+              # setting thermostats to new settings
+              - service: script.set_thermostats_preset_modes
+                data:
+                  thermostats: "{{ states.sensor.thermostats_to_set.state }}"
+              # notifying via text message
+              - service: notify.notify
+                data:
+                  title: "CLIMA DOMESTICO"
+                  message: "Ho impostato i termostati con i nuovi parametri selezionati."
+          # CASE 2: manual heating setting OFF
+          - conditions: "{{ is_state(trigger.entity_id, 'off') }}"
+            sequence:
+              # restore thermostats to previous settings
+              - service: script.reset_thermostats_preset_modes
+              # - service: scene.turn_on
+              #   data:
+              #     entity_id: scene.save_thermostats_preset_modes
+              # notifying via text message
+              - service: notify.notify
+                data:
+                  title: "CLIMA DOMESTICO"
+                  message: "Ho reimpostato i termostati ai parametri precedenti il cambiamento manuale."
