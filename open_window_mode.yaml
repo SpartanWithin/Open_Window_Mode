@@ -97,7 +97,7 @@ script:
             {{ (("Un timer di durata " ~ state_attr('timer.open_window_mode', 'duration'))
               if is_state('input_boolean.open_window_mode', 'on') else
               "Il timer ")
-              ~ "è stato attivato alle "
+              ~ " è stato attivato alle "
               ~ as_timestamp(states('input_datetime.open_window_mode_on'))|timestamp_custom('%H:%M:%S')
               ~ " e "
               ~ ("terminerà alle " ~ as_timestamp(state_attr('timer.open_window_mode', 'finishes_at'))|timestamp_custom('%H:%M:%S')
