@@ -117,7 +117,7 @@ input_number:
   # thermostats temperature to set back
 
   # T1 thermostat
-  t1_temperature:
+  T1_temperature:
     name: temperatura T1
     min: 5
     max: 25
@@ -126,7 +126,7 @@ input_number:
     mode: box
     icon: mdi:thermometer
   # V1 thermostat
-  t2_temperature:
+  V1_temperature:
     name: temperatura V1
     min: 5
     max: 25
@@ -135,7 +135,7 @@ input_number:
     mode: box
     icon: mdi:thermometer
   # V2 thermostat
-  t3_temperature:
+  V2_temperature:
     name: temperatura V2
     min: 5
     max: 25
@@ -144,7 +144,7 @@ input_number:
     mode: box
     icon: mdi:thermometer
   # V3 thermostat
-  t4_temperature:
+  V3_temperature:
     name: temperatura V3
     min: 5
     max: 25
@@ -153,7 +153,7 @@ input_number:
     mode: box
     icon: mdi:thermometer
   # V4 thermostat
-  t5_temperature:
+  V4_temperature:
     name: temperatura V4
     min: 5
     max: 25
@@ -184,7 +184,7 @@ input_number:
     step: 0.1
     mode: box
     icon: mdi:thermometer-plus
-  V1_temperature_offset:
+  V2_temperature_offset:
     name: offset temperatura V2
     min: -5
     max: 5
@@ -226,69 +226,69 @@ input_text:
   # preset mode to set back
 
   # T1 thermostat
-  t1_preset_mode:
+  T1_preset_mode:
     name: modalità T1
     initial: "home"
   # V1 thermostat
-  t2_preset_mode:
+  V1_preset_mode:
     name: modalità V1
     initial: "home"
   # V2 thermostat
-  t3_preset_mode:
+  V2_preset_mode:
     name: modalità V2
     initial: "home"
   # V3 thermostat
-  t4_preset_mode:
+  V3_preset_mode:
     name: modalità V3
     initial: "home"
   # V4 thermostat
-  t5_preset_mode:
+  V4_preset_mode:
     name: modalità V4
     initial: "home"
 
   # HVAC action
 
   # T1 thermostat
-  t1_hvac_action:
+  T1_hvac_action:
     name: attività T1
     initial: "off"
   # V1 thermostat
-  t2_hvac_action:
+  V1_hvac_action:
     name: attività V1
     initial: "off"
   # V2 thermostat
-  t3_hvac_action:
+  V2_hvac_action:
     name: attività V2
     initial: "off"
   # V3 thermostat
-  t4_hvac_action:
+  V3_hvac_action:
     name: attività V3
     initial: "off"
   # V4 thermostat
-  t5_hvac_action:
+  V4_hvac_action:
     name: attività V4
     initial: "off"
 
   # HVAC mode to set back
 
   # T1 thermostat
-  t1_hvac_mode:
+  T1_hvac_mode:
     name: attività T1
     initial: "off"
   # V1 thermostat
-  t2_hvac_mode:
+  V1_hvac_mode:
     name: attività V1
     initial: "off"
   # V2 thermostat
-  t3_hvac_mode:
+  V2_hvac_mode:
     name: attività V2
     initial: "off"
   # V3 thermostat
-  t4_hvac_mode:
+  V3_hvac_mode:
     name: attività V3
     initial: "off"
   # V4 thermostat
-  t5_hvac_mode:
+  V4_hvac_mode:
     name: attività V4
     initial: "off"
 
@@ -342,89 +342,89 @@ script:
       # preset mode
       - service: input_text.set_value
         data:
-          entity_id: input_text.t1_preset_mode
+          entity_id: input_text.T1_preset_mode
           value: "{{ state_attr('climate.thermostat_t1', 'preset_mode') }}"
       - service: input_text.set_value
         data:
-          entity_id: input_text.t2_preset_mode
+          entity_id: input_text.V1_preset_mode
           value: "{{ state_attr('climate.thermostat_v1', 'preset_mode') }}"
       - service: input_text.set_value
         data:
-          entity_id: input_text.t3_preset_mode
+          entity_id: input_text.V2_preset_mode
           value: "{{ state_attr('climate.thermostat_v1', 'preset_mode') }}"
       - service: input_text.set_value
         data:
-          entity_id: input_text.t4_preset_mode
+          entity_id: input_text.V3_preset_mode
           value: "{{ state_attr('climate.thermostat_v3', 'preset_mode') }}"
       - service: input_text.set_value
         data:
-          entity_id: input_text.t5_preset_mode
+          entity_id: input_text.V4_preset_mode
           value: "{{ state_attr('climate.thermostat_v4', 'preset_mode') }}"
 
       # HVAC action
       - service: input_text.set_value
         data:
-          entity_id: input_text.t1_hvac_action
+          entity_id: input_text.T1_hvac_action
           value: "{{ state_attr('climate.thermostat_t1', 'hvac_action') }}"
       - service: input_text.set_value
         data:
-          entity_id: input_text.t2_hvac_action
+          entity_id: input_text.V1_hvac_action
           value: "{{ state_attr('climate.thermostat_v1', 'hvac_action') }}"
       - service: input_text.set_value
         data:
-          entity_id: input_text.t3_hvac_action
+          entity_id: input_text.V2_hvac_action
           value: "{{ state_attr('climate.thermostat_v1', 'hvac_action') }}"
       - service: input_text.set_value
         data:
-          entity_id: input_text.t4_hvac_action
+          entity_id: input_text.V3_hvac_action
           value: "{{ state_attr('climate.thermostat_v3', 'hvac_action') }}"
       - service: input_text.set_value
         data:
-          entity_id: input_text.t5_hvac_action
+          entity_id: input_text.V4_hvac_action
           value: "{{ state_attr('climate.thermostat_v4', 'hvac_action') }}"
 
       # HVAC mode
       - service: input_text.set_value
         data:
-          entity_id: input_text.t1_hvac_mode
+          entity_id: input_text.T1_hvac_mode
           value: "{{ states('climate.thermostat_t1') }}"
       - service: input_text.set_value
         data:
-          entity_id: input_text.t2_hvac_mode
+          entity_id: input_text.V1_hvac_mode
           value: "{{ states('climate.thermostat_v1') }}"
       - service: input_text.set_value
         data:
-          entity_id: input_text.t3_hvac_mode
+          entity_id: input_text.V2_hvac_mode
           value: "{{ states('climate.thermostat_v1') }}"
       - service: input_text.set_value
         data:
-          entity_id: input_text.t4_hvac_mode
+          entity_id: input_text.V3_hvac_mode
           value: "{{ states('climate.thermostat_v3') }}"
       - service: input_text.set_value
         data:
-          entity_id: input_text.t5_hvac_mode
+          entity_id: input_text.V4_hvac_mode
           value: "{{ states('climate.thermostat_v4') }}"
 
       # temperature
       - service: input_number.set_value
         data:
-          entity_id: input_number.t1_temperature
+          entity_id: input_number.T1_temperature
           value: "{{ state_attr('climate.thermostat_t1', 'temperature') }}"
       - service: input_number.set_value
         data:
-          entity_id: input_number.t2_temperature
+          entity_id: input_number.V1_temperature
           value: "{{ state_attr('climate.thermostat_v1', 'temperature') }}"
       - service: input_number.set_value
         data:
-          entity_id: input_number.t3_temperature
+          entity_id: input_number.V2_temperature
           value: "{{ state_attr('climate.thermostat_v1', 'temperature') }}"
       - service: input_number.set_value
         data:
-          entity_id: input_number.t4_temperature
+          entity_id: input_number.V3_temperature
           value: "{{ state_attr('climate.thermostat_v3', 'temperature') }}"
       - service: input_number.set_value
         data:
-          entity_id: input_number.t5_temperature
+          entity_id: input_number.V4_temperature
           value: "{{ state_attr('climate.thermostat_v4', 'temperature') }}"
 
 
@@ -502,68 +502,68 @@ script:
       - service: climate.set_temperature
         data:
           entity_id: climate.thermostat_t1
-          temperature: "{{ states.input_number.t1_temperature.state }}"
+          temperature: "{{ states.input_number.T1_temperature.state }}"
       - service: climate.set_temperature
         data:
           entity_id: climate.thermostat_v1
-          temperature: "{{ states.input_number.t2_temperature.state }}"
+          temperature: "{{ states.input_number.V1_temperature.state }}"
       - service: climate.set_temperature
         data:
           entity_id: climate.thermostat_v1
-          hvac_mode: "{{ states.input_text.t3_hvac_mode.state }}"
-          temperature: "{{ states.input_number.t3_temperature.state }}"
+          hvac_mode: "{{ states.input_text.V2_hvac_mode.state }}"
+          temperature: "{{ states.input_number.V2_temperature.state }}"
       - service: climate.set_temperature
         data:
           entity_id: climate.thermostat_v3
-          temperature: "{{ states.input_number.t4_temperature.state }}"
+          temperature: "{{ states.input_number.V3_temperature.state }}"
       - service: climate.set_temperature
         data:
           entity_id: climate.thermostat_v4
-          temperature: "{{ states.input_number.t5_temperature.state }}"
+          temperature: "{{ states.input_number.V4_temperature.state }}"
 
       # HVAC mode
       - service: climate.set_hvac_mode
         data:
           entity_id: climate.thermostat_t1
-          hvac_mode: "{{ states.input_text.t1_hvac_mode.state }}"
+          hvac_mode: "{{ states.input_text.T1_hvac_mode.state }}"
       - service: climate.set_hvac_mode
         data:
           entity_id: climate.thermostat_v1
-          hvac_mode: "{{ states.input_text.t2_hvac_mode.state }}"
+          hvac_mode: "{{ states.input_text.V1_hvac_mode.state }}"
       - service: climate.set_hvac_mode
         data:
           entity_id: climate.thermostat_v1
-          hvac_mode: "{{ states.input_text.t3_hvac_mode.state }}"
+          hvac_mode: "{{ states.input_text.V2_hvac_mode.state }}"
       - service: climate.set_hvac_mode
         data:
           entity_id: climate.thermostat_v3
-          hvac_mode: "{{ states.input_text.t4_hvac_mode.state }}"
+          hvac_mode: "{{ states.input_text.V3_hvac_mode.state }}"
       - service: climate.set_hvac_mode
         data:
           entity_id: climate.thermostat_v4
-          hvac_mode: "{{ states.input_text.t5_hvac_mode.state }}"
+          hvac_mode: "{{ states.input_text.V4_hvac_mode.state }}"
 
       # preset mode
       - service: climate.set_preset_mode
         data:
           entity_id: climate.thermostat_t1
-          preset_mode: "{{ states.input_text.t1_preset_mode.state }}"
+          preset_mode: "{{ states.input_text.T1_preset_mode.state }}"
       - service: climate.set_preset_mode
         data:
           entity_id: climate.thermostat_v1
-          preset_mode: "{{ states.input_text.t2_preset_mode.state }}"
+          preset_mode: "{{ states.input_text.V1_preset_mode.state }}"
       - service: climate.set_preset_mode
         data:
           entity_id: climate.thermostat_v1
-          preset_mode: "{{ states.input_text.t3_preset_mode.state }}"
+          preset_mode: "{{ states.input_text.V2_preset_mode.state }}"
       - service: climate.set_preset_mode
         data:
           entity_id: climate.thermostat_v3
-          preset_mode: "{{ states.input_text.t4_preset_mode.state }}"
+          preset_mode: "{{ states.input_text.V3_preset_mode.state }}"
       - service: climate.set_preset_mode
         data:
           entity_id: climate.thermostat_v4
-          preset_mode: "{{ states.input_text.t5_preset_mode.state }}"
+          preset_mode: "{{ states.input_text.V4_preset_mode.state }}"
 
 
 
